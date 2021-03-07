@@ -182,12 +182,16 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(num+" "+emel+" " +num1);
         });
         btnpoint.setOnClickListener(v->{
-            textView.setText(textView.getText()+".");
-            if(!mathoperationclick) num+=".";
-            else {
-                num1+=".";
-                numclick=true;
-            }
+           if(textView.length()==0){ textView.setText(textView.getText()+"0.");num="0.";}
+           else{ if(!mathoperationclick){
+               num+=".";
+               textView.setText(textView.getText()+".");
+           }
+                 else {textView.setText(textView.getText()+".");
+                       num1+=".";
+                       numclick=true;
+                 }
+           }
             System.out.println(num+" "+emel+" " +num1);
         });
         btnc.setOnClickListener(v->{
@@ -216,9 +220,14 @@ public class MainActivity extends AppCompatActivity {
     btnminus.setOnClickListener(v->{
 
         if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
-        textView.setText(num+"-");
+        if(num.length()==0){  textView.setText(num+"-");
+           num="-";
+            mathoperationclick =false;
+        }else{
+            textView.setText(num+"-");
             mathoperationclick =true;
             emel="-";
+        }
         System.out.println(num+" "+emel+" " +num1);
 
         });
