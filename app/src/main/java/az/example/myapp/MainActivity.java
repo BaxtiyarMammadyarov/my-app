@@ -14,27 +14,27 @@ public class MainActivity extends AppCompatActivity {
 
  private boolean mathoperationclick =false,numclick=false;
  private String num="",num1="";
- private int emel;
+ private String emel="";
 
 
 
-  private static String hesabla(int emel, String number, String number1){
+  private static String hesabla(String emel, String number, String number1){
       Double sum;
       String rs="";
       switch (emel){
-          case 1:
+          case "+":
               sum=Double.parseDouble(number)+Double.parseDouble(number1);
               rs=sum.toString();
               break;
-          case 2:
+          case "-":
               sum=Double.parseDouble(number)-Double.parseDouble(number1);
               rs=sum.toString();
               break;
-          case 3:
+          case "*":
               sum=Double.parseDouble(number)*Double.parseDouble(number1);
               rs=sum.toString();
               break;
-          case 4:
+          case "/":
               if(Double.parseDouble(number1)!=0.0) {
                   sum=Double.parseDouble(number)/Double.parseDouble(number1);
                   rs=sum.toString();
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
               else {
                   rs="";
               break;}
-          case 5:
+          case "%":
               sum=Double.parseDouble(number)*Double.parseDouble(number1)/100;
               rs=sum.toString();
       }
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
              textView.setText("");
              numclick=false;
              mathoperationclick=false;
-             emel=0;
+             emel="";
              num="";
              num1="";
          });
@@ -192,10 +192,10 @@ public class MainActivity extends AppCompatActivity {
         });
         btnc.setOnClickListener(v->{
            textView.setText(textView.getText().toString().substring(0,textView.getText().length()-1));
-          if(num1.length()>2) num1=num1.substring(0,textView.getText().length()-1);
+          if(num1.length()>1) num1=num1.substring(0,num1.length()-1);
           else num1="";
           if((textView.getText().length()-num.length())==0){
-              emel=0;
+              emel="";
               mathoperationclick=false;
           }
           else if(textView.getText().length()-num.length()<0){
@@ -208,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
         btnsum.setOnClickListener(v-> {
             if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
             textView.setText(num+"+");
-            emel=1;
+            emel="+";
             mathoperationclick =true;
             System.out.println(num+" "+emel+" " +num1);
 
@@ -218,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
         textView.setText(num+"-");
             mathoperationclick =true;
-            emel=2;
+            emel="-";
         System.out.println(num+" "+emel+" " +num1);
 
         });
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
             if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
             textView.setText(num+"*");
             mathoperationclick =true;
-            emel=3;
+            emel="*";
             System.out.println(num+" "+emel+" " +num1);
 
         });
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
            if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
             textView.setText(num+"/");
             mathoperationclick =true;
-            emel=4;
+            emel="/";
             System.out.println(num+" "+emel+" " +num1);
 
 
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
             if(mathoperationclick){ if(numclick) {num=hesabla(emel,num,num1);num1="";}}
             textView.setText(num+"%");
             mathoperationclick =true;
-            emel=5;
+            emel="%";
             System.out.println(num+" "+emel+" " +num1);
 
         });
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
             num= hesabla(emel,num,num1);
             textView.setText(textView.getText()+"="+num);
             num1="";
-            emel=0;
+            emel="";
             mathoperationclick=false;
             System.out.println(num+" "+emel+" " +num1);
         });
