@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
  private boolean emelclick =false,numclick=false;
  private String num="",num1="";
  private int emel;
- private Character[] emellist={'+','-','*','/'};
+
 
 
   private static String hesabla(int emel, String number, String number1){
