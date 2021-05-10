@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,26 +19,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-  private String hesabla(String emel, String number, String number1){
-      Double sum;
+  private String hesabla(String emel, String number1, String number2){
+      BigDecimal sum=BigDecimal.valueOf(0);
+      BigDecimal num1=new BigDecimal(number1);
+      BigDecimal num2=new BigDecimal(number2);
       String rs="";
       switch (emel){
           case "+":
-              sum=Double.parseDouble(number)+Double.parseDouble(number1);
-              rs=sum.toString();
+            rs= num1.add(num2).toString();
               break;
           case "-":
-              sum=Double.parseDouble(number)-Double.parseDouble(number1);
-              rs=sum.toString();
+              rs=num1.subtract(num2).toString();
               break;
           case "*":
-              sum=Double.parseDouble(number)*Double.parseDouble(number1);
-              rs=sum.toString();
+              rs=num1.multiply(num2).toString();
               break;
           case "/":
-              if(Double.parseDouble(number1)!=0.0) {
-                  sum=Double.parseDouble(number)/Double.parseDouble(number1);
-                  rs=sum.toString();
+              if(Double.parseDouble(number2)!=0.0) {
+                  rs=num1.divide(num2).toString();
                   break;
               }
               else {
@@ -45,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
                   btnClose();
               break;}
           case "%":
-              sum=Double.parseDouble(number)*Double.parseDouble(number1)/100;
-              rs=sum.toString();
+              rs=num1.multiply(num2).divide(BigDecimal.valueOf(100)).toString();
       }
      return rs;
   }
